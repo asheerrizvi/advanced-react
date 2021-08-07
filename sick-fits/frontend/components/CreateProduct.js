@@ -59,7 +59,7 @@ export default function CreateProduct() {
         const response = await createProduct();
         clearForm();
         Router.push({
-          pathname: `/products/${response.data.createProduct.id}`,
+          pathname: `/product/${response.data.createProduct.id}`,
         });
       }}
     >
