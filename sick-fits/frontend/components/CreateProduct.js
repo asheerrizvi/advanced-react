@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import useForm from '../lib/useForm';
 import DisplayError from './ErrorMessage';
 import { ALL_PRODUCTS_QUERY } from './Products';
@@ -46,19 +47,20 @@ export default function CreateProduct() {
       refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
     }
   );
-  console.log(createProduct);
 
   return (
     <Form
       onSubmit={async (e) => {
         e.preventDefault();
-        console.log(inputs);
         // Submit the input fields to the backend
         // If you don't know the variables at the time of creation then
         // they can be passed when calling createProduct too
         // const response = await createProduct({ variables: inputs });
-        await createProduct();
+        const response = await createProduct();
         clearForm();
+        Router.push({
+          pathname: `/products/${response.data.createProduct.id}`,
+        });
       }}
     >
       <DisplayError error={error} />
