@@ -14,8 +14,8 @@ export default function SignOut() {
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
-  async function handleSignOutClick() {
-    await signout();
+  function handleSignOutClick() {
+    signout();
   }
 
   return (
