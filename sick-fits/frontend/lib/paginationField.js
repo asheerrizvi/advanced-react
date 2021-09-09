@@ -10,7 +10,6 @@ export default function paginationField() {
       // because they are already in the cache.
       // The other thing we can do is to return false from here,
       // which will trigger a network request.
-      console.log({ existing, args, cache });
       const { skip, first } = args;
 
       // Read the number of items on the page from the cache.
@@ -54,7 +53,6 @@ export default function paginationField() {
         merged[i] = incoming[i - skip];
       }
 
-      console.log(merged);
       // Finally we return the merged items from cache.
       return merged;
     },
