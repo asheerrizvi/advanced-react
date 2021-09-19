@@ -27,7 +27,6 @@ const AnimationStyles = styled.span`
     transform: scale(4) rotateX(0.5turn);
   }
   .count-enter-active {
-    background: green;
     transform: rotateX(0);
   }
   .count-exit {
@@ -36,7 +35,6 @@ const AnimationStyles = styled.span`
     transform: rotateX(0);
   }
   .count-exit-active {
-    background: pink;
     transform: scale(4) rotateX(0.5turn);
   }
 `;
