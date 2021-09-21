@@ -1,13 +1,13 @@
+import styled from 'styled-components';
+import { loadStripe } from '@stripe/stripe-js';
 import {
   CardElement,
   Elements,
   useElements,
   useStripe,
 } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import nProgress from 'nprogress';
 import { useState } from 'react';
-import styled from 'styled-components';
+import nProgress from 'nprogress';
 import SickButton from './styles/SickButton';
 
 const CheckoutFormStyles = styled.form`
@@ -26,26 +26,28 @@ function CheckoutForm() {
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-
   async function handleSubmit(e) {
-    // 1. Stop the form from submitting and turn the loader on.
+    // 1. Stop the form from submitting and turn the loader one
     e.preventDefault();
     setLoading(true);
-    // 2. Start the page transition.
+    console.log('We gotta do some work..');
+    // 2. Start the page transition
     nProgress.start();
-    // 3. Create the payment method via stripe (token comes back here if successful).
+    // 3. Create the payment method via stripe (Token comes back here if successful)
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
     });
-    // 4. Handle any errors from stripe.
+    // 4. Handle any errors from stripe
+    console.log(paymentMethod);
     if (error) {
       setError(error);
     }
-    // 5. Send the token from step 3 to our keystone server via a custom mutation!
-    // 6. Change the page to view the order.
-    // 7. Close the cart.
-    // 8. Turn the loader off.
+    // 5. Send the token from step 3 to our keystone server, via a custom mutation!
+    // 6. Change the page to view the order
+    // 7. Close the cart
+
+    // 8. turn the loader off
     setLoading(false);
     nProgress.done();
   }
@@ -54,7 +56,7 @@ function CheckoutForm() {
     <CheckoutFormStyles onSubmit={handleSubmit}>
       {error && <p style={{ fontSize: 12 }}>{error.message}</p>}
       <CardElement />
-      <SickButton>Check out</SickButton>
+      <SickButton>Check Out</SickButton>
     </CheckoutFormStyles>
   );
 }
