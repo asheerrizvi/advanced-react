@@ -3,7 +3,7 @@ import {
   CartItemCreateInput,
   OrderCreateInput,
 } from '../.keystone/schema-types';
-import stripeConfig from '../lib/Stripe';
+import stripeConfig from '../lib/stripe';
 import { Session } from '../types';
 
 const graphql = String.raw;
@@ -68,6 +68,8 @@ async function checkout(
       console.log(err);
       throw new Error(err.message);
     });
+  console.log(charge);
+
   // 4. Convert the cart items to order items.
   // 5. Create the order and return it.
 }
