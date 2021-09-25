@@ -16,7 +16,10 @@ export const User = list({
         itemView: { fieldMode: 'read' },
       },
     }),
-    //  TODO: add roles.
     orders: relationship({ ref: 'Order.user', many: true }),
+    role: relationship({
+      ref: 'Role.assignedTo',
+      // TODO: Add access control
+    }),
   },
 });
